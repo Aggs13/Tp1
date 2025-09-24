@@ -12,7 +12,9 @@ let num1
 let num2
 function suma(num1,num2){
     const resultado = num1 + num2
+    console.log("---------Resultado------------")
     console.log(num1+" + "+ num2+" = "+resultado)
+    console.log("---------Resultado------------")
 }
 
 function resta(num1,num2){
@@ -23,6 +25,19 @@ function resta(num1,num2){
 
 }
 
+function mult(num1,num2){
+  const resultado = num1 * num2
+  console.log("---------Resultado------------")
+  console.log(num1+" * "+ num2+" = "+resultado)
+  console.log("------------------------")
+}
+
+function div(num1,num2){
+  const resultado = num1 / num2
+  console.log("---------Resultado------------")
+  console.log(num1+" / "+ num2+" = "+resultado)
+  console.log("------------------------")
+}
 
 do{
 console.log("-------------")
@@ -49,12 +64,19 @@ switch(op){
   break;
 
   case"3":
+    num1 = parseFloat(await input("Ingrese un numero: ")) 
+    num2 = parseFloat(await input("Ingrese un numero: ")) 
+    mult(num1,num2)
   break;
 
   case"4":
+    num1 = parseFloat(await input("Ingrese un numero: ")) 
+    num2 = parseFloat(await input("Ingrese un numero: ")) 
+    div(num1,num2)
   break;
 
   case"0":
+  console.log("Programa finalizdo")
   break;
 }
 
