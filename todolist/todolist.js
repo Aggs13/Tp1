@@ -2,11 +2,17 @@
 // Menú Principal en Node.js
 // ========================
 
-const { input, close } = require("./lib/nodeImperativo");
+const { input, close } = require("../lib/nodeImperativo");
 
 // Lista de tareas en memoria
-let tareas = [];
+let tareas = [
+{id:0,titulo:"Tarea 1", descripcion:"Tarea 1 de prueba", estado:"Pendiente"},
+{id:1,titulo:"Tarea 2", descripcion:"Tarea 2 de prueba", estado:"En Proceso"},
+{id:2,titulo:"Tarea 3", descripcion:"Tarea 3 de prueba", estado:"Terminada"},
+{id:3,titulo:"Tarea 4", descripcion:"Tarea 4 de prueba", estado:"Cancelada"},
+];
 let newTarea;
+
 function verTareas(tareas) {
   tareas.forEach(function(tarea) {
     console.log(tarea);
@@ -14,7 +20,7 @@ function verTareas(tareas) {
 }
 // Función para mostrar el menú
 function mostrarMenu() {
-  console.log("\n¡Hola Olivia!");
+  console.log("\n¡Hola!");
   console.log("¿Qué deseas hacer?");
   console.log("[1] Ver Mis Tareas.");
   console.log("[2] Buscar una Tarea.");
@@ -89,30 +95,68 @@ async function main() {
     console.log("Como desea buscar la tarea?")
 
     console.log("1-ID")
-    console.log("2-Palabras clave")
+    console.log("2-Estado de la tarea")
+    let num = await input("Ingrese como buscar: ")
+    if(num == "1") await buscTareaId()
+    if(num == "2") await buscTareaEstado()
     
-    const num = await input("Ingrese como buscar: ")
-    if(num == "1"){
-      let numId = await input("ingrese el id: ")
-      numId = parseInt(numId)
-      tareas.forEach(function(tareas){
-        if(tareas.tarea.id == numId){
-          console.log(tareas)
+    
+}
+
+// buscar tarea por ID
+async function buscTareaId(){
+  numId = parseInt(await input("ingrese el ID que busca: "))
+  tareas.forEach(function(tarea){
+    if(tarea.id == numId){
+      console.log(tarea)
+    }
+  })
+
+}
+
+
+// buscar tarea por estado 
+async function buscTareaEstado() {
+
+    console.log("1-[Pendiente]")
+    console.log("2-[En proceso]")
+    console.log("3-[Terminada]")
+    console.log("4-[Cancelada]")
+
+    let numEstado = await input("Ingrese el estado: ")
+
+    if(numEstado == "1"){
+      tareas.forEach(function(tarea){
+        if(tarea.estado == "Pendiente"){
+          console.log(tarea)
         }
       })
     }
 
-    if(num == "2"){
-      let palabra = await input("Ingrese la palabra: ")
-      tareas.forEach(function(tareas){
-          let titulo = tareas.tarea.titulo
-          if(titulo.includes(palabra)){
-            console.log(tareas)
+    if(numEstado == "2"){
+      tareas.forEach(function(tarea){
+          if(tarea.estado == "En Proceso"){
+            console.log(tarea)
           }
-      })
-    } 
+        })
+    }
 
-  }
+    if(numEstado == "3"){
+      tareas.forEach(function(tarea){
+        if(tarea.estado == "Terminada"){
+          console.log(tarea)
+        }
+      })
+    }
+
+    if(numEstado == "4"){
+      tareas.forEach(function(tarea){
+        if(tarea.estado == "Cancelada"){
+          console.log(tarea)
+        }
+      })
+    }
+}
 
 
   close();

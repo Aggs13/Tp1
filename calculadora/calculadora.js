@@ -2,7 +2,7 @@
 // Programa principal
 // =======================
 //Importamos desde la librería
-const { input, close } = require("./lib/nodeImperativo");
+const { input, close } = require("../lib/nodeImperativo");
 
 // Función principal 
 async function main() {
@@ -45,6 +45,7 @@ console.log("1-Suma")
 console.log("2-Resta")
 console.log("3-Multiplicacion")
 console.log("4-Division")
+console.log("0-Salir")
 console.log("-------------")
 console.log("Ingrese el numero de la operacion: ")
 op = await input("> ");
